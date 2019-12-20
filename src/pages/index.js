@@ -10,11 +10,17 @@ library.add(fab, faSun, faMoon)
 
 const IndexPage = () => {
   const [isDark, setDarkTheme] = useState(false)
+  const onSetDarkThemeChanged = () => setDarkTheme(!isDark)
 
+  console.log("isDark", isDark)
   return (
     <Router>
       <LandingPage path="/" />
-      <ComingSoonPage path="coming-soon" />
+      <ComingSoonPage
+        path="coming-soon"
+        isDark={isDark}
+        onSetDarkThemeChanged={onSetDarkThemeChanged}
+      />
     </Router>
   )
 }
