@@ -1,14 +1,15 @@
-import React, { useState } from "react"
+import React from "react"
 import { Flex, Box, Button } from "rebass"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useColorMode, Styled } from "theme-ui"
 
 import Layout from "../components/layout"
 
 const ComingSoonPage = () => {
-  const [isDark, setDarkTheme] = useState(false)
-  const onSetDarkThemeChanged = () => setDarkTheme(!isDark)
+  const [colorMode, setColorMode] = useColorMode()
+  const onSetDarkThemeChanged = () =>
+    setColorMode(colorMode === "default" ? "dark" : "default")
 
-  console.log("isDark", isDark)
   return (
     <Layout>
       <Flex
@@ -34,7 +35,7 @@ const ComingSoonPage = () => {
             }}
             onClick={onSetDarkThemeChanged}
           >
-            {!isDark ? (
+            {colorMode === "default" ? (
               <FontAwesomeIcon icon="moon" />
             ) : (
               <FontAwesomeIcon icon="sun" />
@@ -51,9 +52,45 @@ const ComingSoonPage = () => {
         }}
       >
         <Box>
-          <h1>Oops! This site is currently work in progress!</h1>
+          <Box mb={5}>
+            <Styled.h1>
+              Oops! This site is currently working in progress!
+            </Styled.h1>
+          </Box>
 
-          <p>For the meantime, you may contact me here</p>
+          <Flex
+            sx={{
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            <Styled.root>For the meantime, you may contact me here</Styled.root>
+            <Flex
+              my={4}
+              width={["50%"]}
+              sx={{
+                justifyContent: "space-around",
+              }}
+            >
+              <Button variant="email">
+                <FontAwesomeIcon icon="envelope" />
+              </Button>
+              <Button variant="facebook">
+                <FontAwesomeIcon icon={["fab", "facebook-square"]} />
+              </Button>
+              <Button variant="twitter">
+                <FontAwesomeIcon icon={["fab", "twitter-square"]} />
+              </Button>
+              <Button variant="github">
+                <FontAwesomeIcon icon={["fab", "github-square"]} />
+              </Button>
+              <Button variant="linkedin">
+                <FontAwesomeIcon icon={["fab", "linkedin"]} />
+              </Button>
+            </Flex>
+          </Flex>
         </Box>
       </Flex>
     </Layout>
