@@ -1,11 +1,25 @@
-import React from "react"
-import { Flex, Box, Button } from "rebass"
+/** @jsx jsx */
+import { Flex, Box } from "rebass"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useColorMode, Styled } from "theme-ui"
+import { useColorMode, Styled, jsx } from "theme-ui"
+import { Link, Button, Heading, Image } from "@theme-ui/components"
+import { useStaticQuery, graphql } from "gatsby"
+import { Link as RouterLink } from "@reach/router"
 
 import Layout from "../components/layout"
 
 const ComingSoonPage = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      darkThemeLogo: file(relativePath: { eq: "itsdyeyson-logo-default.png" }) {
+        publicURL
+      }
+
+      defaultThemeLogo: file(relativePath: { eq: "itsdyeyson-logo-dark.png" }) {
+        publicURL
+      }
+    }
+  `)
   const [colorMode, setColorMode] = useColorMode()
   const onSetDarkThemeChanged = () =>
     setColorMode(colorMode === "default" ? "dark" : "default")
@@ -18,33 +32,31 @@ const ComingSoonPage = () => {
         sx={{
           position: "fixed",
           top: 0,
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
+        px={[3, 4]}
         py={3}
       >
-        <Flex
-          mx={4}
-          sx={{
-            alignItems: "center",
-          }}
-        >
-          <Button
+        <RouterLink to="/">
+          <Image
+            src={data[`${colorMode}ThemeLogo`].publicURL}
             sx={{
-              color: "black",
-              border: "2px solid black",
+              height: "1.5rem",
             }}
-            onClick={onSetDarkThemeChanged}
-          >
-            {colorMode === "default" ? (
-              <FontAwesomeIcon icon="moon" />
-            ) : (
-              <FontAwesomeIcon icon="sun" />
-            )}
-          </Button>
-          {/* <Switch mx={2} /> */}
-        </Flex>
+          />
+        </RouterLink>
+        <Button variant="link" onClick={onSetDarkThemeChanged}>
+          {colorMode === "default" ? (
+            <FontAwesomeIcon icon="moon" />
+          ) : (
+            <FontAwesomeIcon icon="sun" />
+          )}
+        </Button>
       </Flex>
+
       <Flex
+        px={[3, 0]}
         sx={{
           justifyContent: "center",
           alignItems: "center",
@@ -52,10 +64,9 @@ const ComingSoonPage = () => {
         }}
       >
         <Box>
-          <Box mb={5}>
-            <Styled.h1>
-              Oops! This site is currently working in progress!
-            </Styled.h1>
+          <Box>
+            <Heading>Oops!</Heading>
+            <Styled.h2>This site is currently working in progress!</Styled.h2>
           </Box>
 
           <Flex
@@ -65,34 +76,50 @@ const ComingSoonPage = () => {
               alignItems: "center",
               textAlign: "center",
             }}
-          >
-            <Styled.root>For the meantime, you may contact me here</Styled.root>
-            <Flex
-              my={4}
-              width={["50%"]}
-              sx={{
-                justifyContent: "space-around",
-              }}
-            >
-              <Button variant="email">
-                <FontAwesomeIcon icon="envelope" />
-              </Button>
-              <Button variant="facebook">
-                <FontAwesomeIcon icon={["fab", "facebook-square"]} />
-              </Button>
-              <Button variant="twitter">
-                <FontAwesomeIcon icon={["fab", "twitter-square"]} />
-              </Button>
-              <Button variant="github">
-                <FontAwesomeIcon icon={["fab", "github-square"]} />
-              </Button>
-              <Button variant="linkedin">
-                <FontAwesomeIcon icon={["fab", "linkedin"]} />
-              </Button>
-            </Flex>
-          </Flex>
+          ></Flex>
         </Box>
       </Flex>
+      <Box
+        as="footer"
+        width={1}
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          textAlign: "center",
+        }}
+      >
+        <Styled.root>Connect me thru:</Styled.root>
+        <Box my={3}>
+          <Link href="mailto:hello@itsdyeyson.dev" target="_top">
+            <FontAwesomeIcon icon="envelope" />
+          </Link>
+          <Link href="https://facebook.com/itsdyeyson" target="_blank">
+            <FontAwesomeIcon icon={["fab", "facebook-square"]} />
+          </Link>
+          <Link href="https://twitter.com/itsdyeyson" target="_blank">
+            <FontAwesomeIcon icon={["fab", "twitter-square"]} />
+          </Link>
+          <Link href="https://github.com/itsdyeyson" target="_blank">
+            <FontAwesomeIcon icon={["fab", "github-square"]} />
+          </Link>
+          <Link href="https://www.linkedin.com/in/itsdyeyson/" target="_blank">
+            <FontAwesomeIcon icon={["fab", "linkedin"]} />
+          </Link>
+        </Box>
+
+        <Box my={4}>
+          <Styled.root>
+            Developed with{" "}
+            <span
+              sx={{
+                color: "red",
+              }}
+            >
+              ❤
+            </span>
+          </Styled.root>
+        </Box>
+      </Box>
     </Layout>
   )
 }

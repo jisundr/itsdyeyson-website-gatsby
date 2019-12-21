@@ -1,11 +1,12 @@
 export default {
+  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
   fonts: {
     body: "Open Sans, sans-serif",
-    heading: "Roboto, sans-serif",
+    heading: "Nunito, sans-serif",
     monospace: "Fira Code, monospace",
   },
   colors: {
-    text: "#000",
+    text: "#011627",
     background: "#fff",
     primary: "#07c",
     modes: {
@@ -19,43 +20,31 @@ export default {
   styles: {
     root: {
       fontFamily: "body",
+      fontSize: [0, 1],
     },
-    h1: {
+    h2: {
       fontFamily: "heading",
+      fontSize: [3, 5],
+      margin: 0,
     },
-    p: {
-      fontFamily: "body",
+    a: {
+      color: "text",
+      margin: 3,
+    },
+  },
+  text: {
+    heading: {
+      fontSize: [5, 7],
     },
   },
   buttons: {
-    email: {
-      width: "48px",
-      height: "48px",
-      borderRadius: "50%",
+    primary: {
+      color: "text",
     },
-    facebook: {
-      width: "48px",
-      height: "48px",
-      borderRadius: "50%",
-      background: "#3b5998",
-    },
-    twitter: {
-      width: "48px",
-      height: "48px",
-      borderRadius: "50%",
-      background: "#55acee",
-    },
-    github: {
-      width: "48px",
-      height: "48px",
-      borderRadius: "50%",
-      background: "#000000",
-    },
-    linkedin: {
-      width: "48px",
-      height: "48px",
-      borderRadius: "50%",
-      background: "#007bb5",
+    link: {
+      color: "text",
+      border: "none",
+      bg: "transparent",
     },
   },
 }
