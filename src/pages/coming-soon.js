@@ -34,6 +34,7 @@ const ComingSoonPage = () => {
           top: 0,
           justifyContent: "space-between",
           alignItems: "center",
+          minHeight: "66px",
         }}
         px={[3, 4]}
         py={3}
@@ -54,42 +55,37 @@ const ComingSoonPage = () => {
           )}
         </Button>
       </Flex>
-
       <Flex
+        as="main"
         px={[3, 0]}
         sx={{
           justifyContent: "center",
           alignItems: "center",
           height: "100vh",
+          paddingTop: "66px",
+          paddingBottom: "168px",
+          minHeight: "300px",
         }}
       >
         <Box>
-          <Box>
-            <Heading>Oops!</Heading>
-            <Styled.h2>This site is currently working in progress!</Styled.h2>
-          </Box>
-
-          <Flex
-            sx={{
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-            }}
-          ></Flex>
+          <Heading>Oops!</Heading>
+          <Styled.h2>This site is currently working in progress!</Styled.h2>
         </Box>
       </Flex>
       <Box
         as="footer"
         width={1}
+        py={4}
         sx={{
           position: "fixed",
           bottom: 0,
           textAlign: "center",
         }}
       >
-        <Styled.root>Connect me thru:</Styled.root>
-        <Box my={3}>
+        <Box pb={3}>
+          <Styled.root>Connect me thru:</Styled.root>
+        </Box>
+        <Box mb={4}>
           <Link href="mailto:hello@itsdyeyson.dev" target="_top">
             <FontAwesomeIcon icon="envelope" />
           </Link>
@@ -106,8 +102,7 @@ const ComingSoonPage = () => {
             <FontAwesomeIcon icon={["fab", "linkedin"]} />
           </Link>
         </Box>
-
-        <Box my={4}>
+        <Box>
           <Styled.root>
             Developed with{" "}
             <span
