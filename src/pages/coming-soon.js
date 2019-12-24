@@ -1,5 +1,12 @@
 /** @jsx jsx */
 import { Flex, Box } from "rebass"
+import {
+  faFacebookSquare,
+  faTwitterSquare,
+  faGithubSquare,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons"
+import { faSun, faMoon, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useColorMode, Styled, jsx } from "theme-ui"
 import { Link, Button, Heading, Image } from "@theme-ui/components"
@@ -49,9 +56,9 @@ const ComingSoonPage = () => {
         </RouterLink>
         <Button variant="link" onClick={onSetDarkThemeChanged}>
           {colorMode === "default" ? (
-            <FontAwesomeIcon icon="moon" />
+            <FontAwesomeIcon icon={faMoon} />
           ) : (
-            <FontAwesomeIcon icon="sun" />
+            <FontAwesomeIcon icon={faSun} />
           )}
         </Button>
       </Flex>
@@ -87,19 +94,19 @@ const ComingSoonPage = () => {
         </Box>
         <Box mb={4}>
           <Link href="mailto:hello@itsdyeyson.dev" target="_top">
-            <FontAwesomeIcon icon="envelope" />
+            <FontAwesomeIcon icon={faEnvelope} />
           </Link>
           <Link href="https://facebook.com/itsdyeyson" target="_blank">
-            <FontAwesomeIcon icon={["fab", "facebook-square"]} />
+            <FontAwesomeIcon icon={faFacebookSquare} />
           </Link>
           <Link href="https://twitter.com/itsdyeyson" target="_blank">
-            <FontAwesomeIcon icon={["fab", "twitter-square"]} />
+            <FontAwesomeIcon icon={faTwitterSquare} />
           </Link>
           <Link href="https://github.com/itsdyeyson" target="_blank">
-            <FontAwesomeIcon icon={["fab", "github-square"]} />
+            <FontAwesomeIcon icon={faGithubSquare} />
           </Link>
           <Link href="https://www.linkedin.com/in/itsdyeyson/" target="_blank">
-            <FontAwesomeIcon icon={["fab", "linkedin"]} />
+            <FontAwesomeIcon icon={faLinkedinIn} />
           </Link>
         </Box>
         <Box>
