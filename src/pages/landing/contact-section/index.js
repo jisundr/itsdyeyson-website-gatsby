@@ -107,6 +107,7 @@ const ContactSection = () => {
               </a>
               <a
                 href="https://facebook.com/itsdyeyson"
+                rel="noopener noreferrer"
                 target="_blank"
                 className="block mt-4 lg:inline-block lg:mt-0 mr-4"
               >
@@ -114,6 +115,7 @@ const ContactSection = () => {
               </a>
               <a
                 href="https://twitter.com/itsdyeyson"
+                rel="noopener noreferrer"
                 target="_blank"
                 className="block mt-4 lg:inline-block lg:mt-0 mr-4"
               >
@@ -121,6 +123,7 @@ const ContactSection = () => {
               </a>
               <a
                 href="https://github.com/itsdyeyson"
+                rel="noopener noreferrer"
                 target="_blank"
                 className="block mt-4 lg:inline-block lg:mt-0 mr-4"
               >
@@ -128,6 +131,7 @@ const ContactSection = () => {
               </a>
               <a
                 href="https://www.linkedin.com/in/itsdyeyson/"
+                rel="noopener noreferrer"
                 target="_blank"
                 className="block mt-4 lg:inline-block lg:mt-0 mr-4"
               >
