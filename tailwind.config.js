@@ -5,7 +5,11 @@ module.exports = {
       body: "Open Sans",
       monospace: "Fira Code",
     },
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#011627",
+      },
+    },
   },
   variants: {},
   plugins: [],

@@ -17,7 +17,7 @@ const HeaderSection = () => {
 
   return (
     <section
-      className="bg-scroll h-screen"
+      className="bg-scroll h-screen text-white"
       style={{
         backgroundImage: `url(${data.bg.publicURL})`,
         backgroundSize: "cover",
@@ -26,7 +26,7 @@ const HeaderSection = () => {
       <div className="container mx-auto px-4">
         <HeaderNavigation />
         <div
-          className="flex justify-center items-center"
+          className="flex justify-center items-center py-20"
           style={{ height: "calc(100vh - 80px)" }}
         >
           <div className="text-center">
@@ -35,10 +35,10 @@ const HeaderSection = () => {
               className="rounded-full h-56 mb-12 mx-auto"
               alt="Jayson De los Reyes"
             />
-            <h2 className="font-body text-2xl text-white line leading-relaxed">
+            <h2 className="font-body text-2xl line leading-relaxed">
               My Name is Jayson
             </h2>
-            <h1 className="font-heading font-bold text-4xl text-white leading-relaxed">
+            <h1 className="font-heading font-bold text-4xl leading-relaxed">
               I AM A WEB DEVELOPER
             </h1>
           </div>
