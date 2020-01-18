@@ -30,12 +30,12 @@ const AboutSection = () => {
     <section className="min-h-screen bg-white text-primary py-20">
       <div className="container mx-auto py-4">
         <div className="w-auto pb-20">
-          <p className="font-heading text-4xl text-center">
+          <h1 className="font-heading text-4xl text-center">
             I’m <span className="font-bold">Jayson De los Reyes</span>, a
             software engineer based in the Philippines specializes in{" "}
             <span className="font-bold">Front-end Web Development</span> and{" "}
             <span className="font-bold">Mobile App Development</span>.
-          </p>
+          </h1>
         </div>
 
         <div className="w-full pb-10">

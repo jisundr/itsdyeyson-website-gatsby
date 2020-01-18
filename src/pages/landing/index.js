@@ -3,6 +3,7 @@ import React from "react"
 import HeaderSection from "./header-section"
 import AboutSection from "./about-section"
 import ProjectSection from "./project-section"
+import ContactSection from "./contact-section"
 
 const LandingPage = () => {
   return (
@@ -10,6 +11,7 @@ const LandingPage = () => {
       <HeaderSection />
       <AboutSection />
       <ProjectSection />
+      <ContactSection />
     </main>
   )
 }
