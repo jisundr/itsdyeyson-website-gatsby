@@ -96,7 +96,7 @@ const AboutSection = () => {
               personal projects and learn new technologies on web development,
               user experiences and/or product development.
             </p>
-
+            <br />
             <p className="font-body text-xl">
               I also organize tech meetups for ReactJS Philippines and attend
               events from other local tech communities.
