@@ -46,14 +46,11 @@ const ContactSection = () => {
         recaptchaRef.current.getValue()) ||
       null
 
-    const data =
-      process.env.NODE_ENV === "production"
-        ? {
-            "form-name": "contact",
-            "g-recaptcha-response": recaptchaValue,
-            ...values.state,
-          }
-        : { "form-name": "contact", ...values.state }
+    const data = {
+      "form-name": "contact",
+      "g-recaptcha-response": recaptchaValue,
+      ...values,
+    }
 
     fetch("/", {
       method: "POST",
@@ -134,11 +131,9 @@ const ContactSection = () => {
                       />
                     </div>
 
-                    {process.env.NODE_ENV === "production" && (
-                      <div className="w-full px-3 mb-6 md:mb-8 ">
-                        <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />
-                      </div>
-                    )}
+                    <div className="w-full px-3 mb-6 md:mb-8 ">
+                      <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />
+                    </div>
 
                     <div className="w-full px-3 mb-6 md:mb-0">
                       <button
