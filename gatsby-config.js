@@ -1,4 +1,3 @@
-require("dotenv").config()
 module.exports = {
   siteMetadata: {
     title: `itsdyeyson: Web Developer`,
