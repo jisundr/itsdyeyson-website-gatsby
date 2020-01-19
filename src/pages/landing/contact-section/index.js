@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {
   faFacebookSquare,
@@ -8,8 +8,29 @@ import {
 } from "@fortawesome/free-brands-svg-icons"
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Formik } from "formik"
+import Recaptcha from "react-google-recaptcha"
+import * as Yup from "yup"
+import TextInput from "../../../components/app/forms/text-input"
+import TextAreaInput from "../../../components/app/forms/textarea-input"
+
+const RECAPTCHA_KEY = process.env.GATSBY_APP_SITE_RECAPTCHA_KEY
+const contactFormValidationSchema = Yup.object().shape({
+  name: Yup.string().required("Please enter your name"),
+  email: Yup.string()
+    .required("Please enter your email address")
+    .email("Please enter your email address in format: yourname@example.com"),
+  message: Yup.string().required("Please enter your message"),
+})
+
+const encode = data => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
 
 const ContactSection = () => {
+  const recaptchaRef = useRef(null)
   const data = useStaticQuery(graphql`
     query {
       bg: file(relativePath: { eq: "contact-bg.jpg" }) {
@@ -17,6 +38,31 @@ const ContactSection = () => {
       }
     }
   `)
+
+  const handleFormSubmit = values => {
+    const recaptchaValue =
+      (recaptchaRef &&
+        recaptchaRef.current &&
+        recaptchaRef.current.getValue()) ||
+      null
+
+    const data =
+      process.env.NODE_ENV === "production"
+        ? {
+            "form-name": "contact",
+            "g-recaptcha-response": recaptchaValue,
+            ...values.state,
+          }
+        : { "form-name": "contact", ...values.state }
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode(data),
+    })
+      .then(() => alert("Success!"))
+      .catch(error => alert(error))
+  }
 
   return (
     <section className="min-h-screen w-full flex">
@@ -37,58 +83,75 @@ const ContactSection = () => {
               or just say hi, fill-up the form below or send to my e-mail at
               hello@dyeyson.dev and ~let’s talk.
             </p>
-            <form className="w-full">
-              <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                  <label
-                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    htmlFor="grid-first-name"
-                  >
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-8 leading-tight focus:outline-none focus:bg-white"
-                    placeholder="Juan De la Cruz"
-                  />
-                </div>
+            <Formik
+              initialValues={{
+                name: "",
+                email: "",
+                message: "",
+              }}
+              validationSchema={contactFormValidationSchema}
+              onSubmit={handleFormSubmit}
+            >
+              {({ values, handleSubmit, handleChange }) => (
+                <form
+                  className="w-full"
+                  onSubmit={handleSubmit}
+                  data-netlify="true"
+                  data-netlify-recaptcha="true"
+                  noValidate
+                >
+                  <div className="flex flex-wrap -mx-3 mb-6">
+                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-8">
+                      <TextInput
+                        name="name"
+                        label="Your Name"
+                        placeholder="Juan Dela Cruz"
+                        value={values.name}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                  <label
-                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    htmlFor="grid-first-name"
-                  >
-                    Your Email Address
-                  </label>
-                  <input
-                    type="email"
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-8 leading-tight focus:outline-none focus:bg-white"
-                    placeholder="juan.delacruz@gmail.com"
-                  />
-                </div>
+                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-8">
+                      <TextInput
+                        name="email"
+                        label="Your Email Address"
+                        placeholder="juan.delacruz@gmail.com"
+                        value={values.email}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                <div className="w-full px-3 mb-6 md:mb-0">
-                  <label
-                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    htmlFor="grid-first-name"
-                  >
-                    Your message
-                  </label>
-                  <textarea
-                    rows={5}
-                    className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-8 leading-tight focus:outline-none focus:bg-white resize-none"
-                    placeholder="Your message here..."
-                  />
+                    <div className="w-full px-3 mb-6 md:mb-8 ">
+                      <TextAreaInput
+                        name="message"
+                        rows={8}
+                        label="Your Message"
+                        placeholder="Your message here..."
+                        value={values.message}
+                        onChange={handleChange}
+                        noResize
+                        maxLength={1000}
+                      />
+                    </div>
 
-                  <button
-                    type="submit"
-                    className="inline-block text-sm p-4 leading-none border border-transparent rounded-full mt-4 lg:mt-0 bg-teal-500 text-white hover:bg-teal-600 hover:border-white"
-                  >
-                    Send Message
-                  </button>
-                </div>
-              </div>
-            </form>
+                    {process.env.NODE_ENV === "production" && (
+                      <div className="w-full px-3 mb-6 md:mb-8 ">
+                        <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />
+                      </div>
+                    )}
+
+                    <div className="w-full px-3 mb-6 md:mb-0">
+                      <button
+                        type="submit"
+                        className="inline-block text-sm p-4 leading-none border border-transparent rounded-full mt-4 lg:mt-0 bg-teal-500 text-white hover:bg-teal-600 hover:border-white"
+                      >
+                        Send Message
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              )}
+            </Formik>
           </div>
           <div>
             <h1 className="font-heading font-bold text-4xl mb-4">

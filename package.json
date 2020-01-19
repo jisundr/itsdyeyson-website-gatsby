@@ -13,6 +13,8 @@
     "@mdx-js/react": "^1.5.2",
     "@rebass/forms": "^4.0.6",
     "@theme-ui/components": "^0.2.50",
+    "clsx": "^1.0.4",
+    "formik": "^2.1.2",
     "gatsby": "^2.18.8",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-google-fonts": "^1.0.1",
@@ -29,10 +31,12 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-google-recaptcha": "^2.0.1",
     "react-helmet": "^5.2.1",
     "rebass": "^4.0.7",
     "tailwindcss": "^1.1.4",
-    "theme-ui": "^0.2.52"
+    "theme-ui": "^0.2.52",
+    "yup": "^0.28.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
