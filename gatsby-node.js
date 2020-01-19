@@ -6,8 +6,6 @@
 
 exports.onCreatePage = ({ page, actions }) => {
   const { createPage } = actions
-
-  console.log(page)
   if (page.path === "/") {
     page.matchPath = "/*"
     createPage(page)
