@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-exports.onCreatePage = ({ page, actions }) => {
+const onCreatePage = ({ page, actions }) => {
   const { createPage } = actions
 
   console.log(page)
