@@ -15,6 +15,7 @@ import TextInput from "../../../components/app/forms/text-input"
 import TextAreaInput from "../../../components/app/forms/textarea-input"
 
 const RECAPTCHA_KEY = process.env.GATSBY_SITE_RECAPTCHA_KEY
+console.log("RECAPTCHA_KEY", RECAPTCHA_KEY)
 const contactFormValidationSchema = Yup.object().shape({
   name: Yup.string().required("Please enter your name"),
   email: Yup.string()
@@ -40,15 +41,15 @@ const ContactSection = () => {
   `)
 
   const handleFormSubmit = values => {
-    const recaptchaValue =
-      (recaptchaRef &&
-        recaptchaRef.current &&
-        recaptchaRef.current.getValue()) ||
-      null
+    // const recaptchaValue =
+    //   (recaptchaRef &&
+    //     recaptchaRef.current &&
+    //     recaptchaRef.current.getValue()) ||
+    //   null
 
     const data = {
       "form-name": "contact",
-      "g-recaptcha-response": recaptchaValue,
+      // "g-recaptcha-response": recaptchaValue,
       ...values,
     }
 
@@ -94,7 +95,7 @@ const ContactSection = () => {
                   className="w-full"
                   onSubmit={handleSubmit}
                   data-netlify="true"
-                  data-netlify-recaptcha="true"
+                  // data-netlify-recaptcha="true"
                   data-netlify-honeypot="bot-field"
                   noValidate
                 >
@@ -132,9 +133,9 @@ const ContactSection = () => {
                       />
                     </div>
 
-                    <div className="w-full px-3 mb-6 md:mb-8 ">
+                    {/* <div className="w-full px-3 mb-6 md:mb-8 ">
                       <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />
-                    </div>
+                    </div> */}
 
                     <div className="w-full px-3 mb-6 md:mb-0">
                       <button
