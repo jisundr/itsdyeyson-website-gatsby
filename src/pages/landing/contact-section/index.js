@@ -14,7 +14,7 @@ import * as Yup from "yup"
 import TextInput from "../../../components/app/forms/text-input"
 import TextAreaInput from "../../../components/app/forms/textarea-input"
 
-const RECAPTCHA_KEY = process.env.SITE_RECAPTCHA_KEY
+const RECAPTCHA_KEY = process.env.GATSBY_SITE_RECAPTCHA_KEY
 const contactFormValidationSchema = Yup.object().shape({
   name: Yup.string().required("Please enter your name"),
   email: Yup.string()
@@ -95,6 +95,7 @@ const ContactSection = () => {
                   onSubmit={handleSubmit}
                   data-netlify="true"
                   data-netlify-recaptcha="true"
+                  data-netlify-honeypot="bot-field"
                   noValidate
                 >
                   <div className="flex flex-wrap -mx-3 mb-6">
