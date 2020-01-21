@@ -6,9 +6,6 @@ import clsx from "clsx"
 const HeaderNavigation = ({ fixed, theme }) => {
   const data = useStaticQuery(graphql`
     query {
-      logo: file(relativePath: { eq: "itsdyeyson-logo-default.png" }) {
-        publicURL
-      }
       defaultThemeLogo: file(
         relativePath: { eq: "itsdyeyson-logo-default.png" }
       ) {
@@ -23,6 +20,8 @@ const HeaderNavigation = ({ fixed, theme }) => {
 
   const navClassName = clsx("flex items-center justify-between flex-wrap p-6", {
     "top-0 fixed": fixed,
+    "text-white": theme === "default",
+    "text-primary": theme === "dark",
   })
 
   return (
