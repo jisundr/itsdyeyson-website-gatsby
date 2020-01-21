@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {
   faFacebookSquare,
@@ -9,7 +9,6 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Formik } from "formik"
-import Recaptcha from "react-google-recaptcha"
 import * as Yup from "yup"
 import TextInput from "../../../components/app/forms/text-input"
 import TextAreaInput from "../../../components/app/forms/textarea-input"
@@ -31,7 +30,6 @@ const encode = data => {
 }
 
 const ContactSection = () => {
-  const recaptchaRef = useRef(null)
   const data = useStaticQuery(graphql`
     query {
       bg: file(relativePath: { eq: "contact-bg.jpg" }) {
@@ -63,7 +61,7 @@ const ContactSection = () => {
   }
 
   return (
-    <section className="min-h-screen w-full flex">
+    <section id="contact-section" className="min-h-screen w-full flex">
       <div
         className="w-1/3 min-h-screen"
         style={{

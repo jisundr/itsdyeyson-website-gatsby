@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import HeaderNavigation from "./header-navigation"
+import HeaderNavigation from "../../../components/app/header-navigation"
 
 const HeaderSection = () => {
   const data = useStaticQuery(graphql`
@@ -17,6 +17,7 @@ const HeaderSection = () => {
 
   return (
     <section
+      id="header-section"
       className="bg-scroll h-screen text-white"
       style={{
         backgroundImage: `url(${data.bg.publicURL})`,

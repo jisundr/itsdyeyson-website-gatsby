@@ -27,7 +27,10 @@ const AboutSection = () => {
   `)
 
   return (
-    <section className="min-h-screen bg-white text-primary py-20">
+    <section
+      id="about-section"
+      className="min-h-screen bg-white text-primary py-20"
+    >
       <div className="container mx-auto py-4">
         <div className="w-auto pb-20">
           <h1 className="font-heading text-4xl text-center">

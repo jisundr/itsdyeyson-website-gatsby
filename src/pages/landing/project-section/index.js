@@ -2,7 +2,10 @@ import React from "react"
 
 const ProjectSection = () => {
   return (
-    <section className="min-h-screen bg-primary text-white py-20">
+    <section
+      id="project-section"
+      className="min-h-screen bg-primary text-white py-20"
+    >
       <div className="container mx-auto py-4 text-center">
         <h1 className="font-heading text-4xl">PROJECTS</h1>
         <div
